@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.7.5"
+        versionName "1.0.7.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -126,14 +126,18 @@ publishing {
             //远程依赖库的库名
             artifactId = "eSIM"
             //版本号
-            version = "1.0.7.5"
+            version = "1.0.7.6"
 
             // pom文件中声明依赖，从而传递到使用方
             pom.withXml {
                 def dependenciesNode = asNode().appendNode('dependencies')
                 configurations.implementation.allDependencies.each {
                     // 避免出现空节点或 artifactId=unspecified 的节点
-                    if (it.group != null && (it.name != null && "unspecified" != it.name) && it.version != null) {
+                    if (it.group != null && (it.name != null
+                            && "guava" != it.name // 客户说不需要这个依赖包
+                            && "unspecified" != it.name
+                    )
+                            && it.version != null) {
                         println "dependency=${it.toString()}"
                         def dependencyNode = dependenciesNode.appendNode('dependency')
                         dependencyNode.appendNode('groupId', it.group)
