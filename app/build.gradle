@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.7.6"
+        versionName "1.0.7.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -126,7 +126,7 @@ publishing {
             //远程依赖库的库名
             artifactId = "eSIM"
             //版本号
-            version = "1.0.7.6"
+            version = "1.0.7.7"
 
             // pom文件中声明依赖，从而传递到使用方
             pom.withXml {
