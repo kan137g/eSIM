@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.7.7"
+        versionName "1.0.7.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -81,6 +81,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     implementation 'io.reactivex:rxjava:1.1.1'
+    implementation 'com.google.guava:listenablefuture:1.0'
 
 
 
@@ -126,7 +127,7 @@ publishing {
             //远程依赖库的库名
             artifactId = "eSIM"
             //版本号
-            version = "1.0.7.7"
+            version = "1.0.7.8"
 
             // pom文件中声明依赖，从而传递到使用方
             pom.withXml {
@@ -134,7 +135,7 @@ publishing {
                 configurations.implementation.allDependencies.each {
                     // 避免出现空节点或 artifactId=unspecified 的节点
                     if (it.group != null && (it.name != null
-                            && "guava" != it.name // 客户说不需要这个依赖包
+//                            && "guava" != it.name // 客户说不需要这个依赖包
                             && "unspecified" != it.name
                     )
                             && it.version != null) {
