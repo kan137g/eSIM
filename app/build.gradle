@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.8.1"
+        versionName "1.0.8.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,44 +44,35 @@ android {
 
 
 def roomVersion = '2.4.2'
-def grpcVersion = '1.64.0'
+def grpcVersion = '1.63.2'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.aar'])
     implementation files('libs/droidlib-release.aar')
 
-//    implementation "androidx.core:core-ktx:1.3.1"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-//    implementation 'com.google.android.material:material:1.2.0'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.7"
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
-//    implementation 'com.google.android.material:material:1.5.0'
-//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
-//    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-//    implementation 'androidx.navigation:navigation-fragment:2.4.1'
-//    implementation 'androidx.navigation:navigation-ui:2.4.1'
-//    testImplementation 'junit:junit:4.13.2'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.14.8'
-    implementation "io.grpc:grpc-okhttp:${grpcVersion}"
+
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+     implementation "io.grpc:grpc-okhttp:${grpcVersion}"
     implementation "io.grpc:grpc-protobuf-lite:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
     implementation 'org.apache.tomcat:annotations-api:6.0.53'
+//    implementation 'com.google.guava:guava:33.2.1-jre'
+//    implementation 'com.google.guava:listenablefuture:1.0'
 
-    implementation 'com.google.guava:guava:33.2.1-jre'
+
     implementation 'com.squareup.okhttp3:okhttp:3.14.8'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.14.8'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     implementation 'io.reactivex:rxjava:1.1.1'
-    implementation 'com.google.guava:listenablefuture:1.0'
 
 
 
@@ -127,7 +118,7 @@ publishing {
             //远程依赖库的库名
             artifactId = "eSIM"
             //版本号
-            version = "1.0.8.1"
+            version = "1.0.8.2"
 
             // pom文件中声明依赖，从而传递到使用方
             pom.withXml {
@@ -135,12 +126,13 @@ publishing {
                 configurations.implementation.allDependencies.each {
                     // 避免出现空节点或 artifactId=unspecified 的节点
                     if (it.group != null 
-                            && !it.group.contains("androidx")// androidx依赖包包含了guava
+//                            && !it.group.contains("androidx")// androidx依赖包包含了guava
                             &&(it.name != null
                             &&  !it.name.contains("guava") // 客户说不需要这个依赖包
-                            &&  !it.name.contains("grpc") // 这个依赖包包含了guava
-                            &&  !it.name.contains("grpc") // 这个依赖包包含了guava
+//                            &&  !it.name.contains("grpc") // 这个依赖包包含了guava
+//                            &&  !it.name.contains("grpc") // 这个依赖包包含了guava
                             && "listenablefuture" != it.name // 这个依赖包包含了guava
+                            && "failureaccess" != it.name // 这个依赖包包含了guava
                             && "unspecified" != it.name
                     )
                             && it.version != null) {
