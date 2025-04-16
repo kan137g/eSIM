@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 1
-        versionName "1.0.8.2"
+        versionName "1.0.8.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,10 +55,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
 
 
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-ktx:$roomVersion"
-
      implementation "io.grpc:grpc-okhttp:${grpcVersion}"
     implementation "io.grpc:grpc-protobuf-lite:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
@@ -73,10 +69,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
     implementation 'io.reactivex:rxjava:1.1.1'
-
-
-
-
 
 }
 
@@ -118,7 +110,7 @@ publishing {
             //远程依赖库的库名
             artifactId = "eSIM"
             //版本号
-            version = "1.0.8.2"
+            version = "1.0.8.3"
 
             // pom文件中声明依赖，从而传递到使用方
             pom.withXml {
